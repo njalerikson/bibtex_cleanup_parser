@@ -1,5 +1,5 @@
 [![Build Status](https://travis-ci.org/njalerikson/bibtex_cleanup_parser.svg)](https://travis-ci.org/njalerikson/bibtex_cleanup_parser)
-<!-- [![Coverage Status](https://coveralls.io/repos/sciunto-org/python-bibtexparser/badge.png)](https://coveralls.io/r/sciunto-org/python-bibtexparser) -->
+[![Coverage Status](https://coveralls.io/repos/njalerikson/bibtex_cleanup_parser/badge.svg)](https://coveralls.io/r/njalerikson/bibtex_cleanup_parser)
 
 bibtex_cleanup_parser
 ===================
