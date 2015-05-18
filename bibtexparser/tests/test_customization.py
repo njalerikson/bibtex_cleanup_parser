@@ -162,7 +162,7 @@ class TestBibtexParserMethod(unittest.TestCase):
         if sys.version_info < (3, 0, 0):
             expected = {'toto': u'\ud7ce \ud7d0'}
         else:
-            expected = {'toto': '\ud7ce \ud7d0'}
+            expected = {'toto': "\ud7ce \ud7d0"}
         self.assertEqual(result, expected)
 
     ###########
