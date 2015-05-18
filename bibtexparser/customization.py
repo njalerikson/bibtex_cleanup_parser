@@ -17,7 +17,7 @@ logger = logging.getLogger(__name__)
 
 __all__ = [	'getnames', 'author', 'editor', 'journal', 'keyword', 'link',
 			'page_double_hyphen', 'doi', 'type', 'convert_to_unicode',
-			'homogeneize_latex_encoding']
+			'homogenize_latex_encoding']
 
 
 def getnames(names):
@@ -260,9 +260,9 @@ def convert_to_unicode(record):
     return record
 
 
-def homogeneize_latex_encoding(record):
+def homogenize_latex_encoding(record):
     """
-    Homogeneize the latex enconding style for bibtex
+    Homogenize the latex encoding style for bibtex
     This function is experimental.
     :param record: the record.
     :type record: dict
@@ -272,7 +272,7 @@ def homogeneize_latex_encoding(record):
     record = convert_to_unicode(record)
     # And then, we fall back
     for val in record:
-        if val not in ('ID',):
+        if val not in ['ID']:
             logger.debug('Apply string_to_latex to: %s', val)
             record[val] = string_to_latex(record[val])
             if val == 'title':

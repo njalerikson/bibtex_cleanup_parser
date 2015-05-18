@@ -4,7 +4,7 @@
 from __future__ import unicode_literals
 import unittest
 
-from bibtexparser.customization import getnames, convert_to_unicode, homogeneize_latex_encoding, page_double_hyphen, keyword
+from bibtexparser.customization import getnames, convert_to_unicode, homogenize_latex_encoding, page_double_hyphen, keyword
 
 
 class TestBibtexParserMethod(unittest.TestCase):
@@ -92,7 +92,7 @@ class TestBibtexParserMethod(unittest.TestCase):
     ###########
     def test_homogeneize(self):
         record = {'toto': 'à {\`a} \`{a}'}
-        result = homogeneize_latex_encoding(record)
+        result = homogenize_latex_encoding(record)
         expected = {'toto': '{\`a} {\`a} {\`a}'}
         self.assertEqual(result, expected)
 
