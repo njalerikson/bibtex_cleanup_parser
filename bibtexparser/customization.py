@@ -127,7 +127,7 @@ def page_double_hyphen(record):
 
 	"""
 	if "pages" in record:
-		record["pages"] = re.sub(r"-+", "--", record["pages"], flags=re.IGNORECASE)
+		record["pages"] = re.sub(r"\s*-+\s*", "--", record["pages"], flags=re.IGNORECASE)
 
 		# if "-" in record["pages"]:
 		# 	p = [i.strip().strip('-') for i in record["pages"].split("-")]
