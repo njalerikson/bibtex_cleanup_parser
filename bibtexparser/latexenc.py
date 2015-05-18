@@ -2541,7 +2541,7 @@ def prepare_unicode_to_latex():
         ("\uD786", "\\mathsfbf{\\Chi}"),
         ("\uD787", "\\mathsfbf{\\Psi}"),
         ("\uD788", "\\mathsfbf{\\Omega}"),
-        ("\uD789", "\\partial "),
+        ("\uD789", "\\partial"),
         ("\uD78A", "\\in"),
         ("\uD78B", "\\mathsfbf{\\vartheta}"),
         ("\uD78C", "\\mathsfbf{\\varkappa}"),
