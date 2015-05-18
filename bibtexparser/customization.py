@@ -189,54 +189,6 @@ def keyword(record, sep=r",|;"):
 		record["keyword"] = [k.strip() for k in keyword]
 	return record
 
-
-def link(record):
-	"""
-
-	:param record: the record.
-	:type record: dict
-	:returns: dict -- the modified record.
-
-	"""
-	if "link" in record:
-		links = [i.strip().replace("  ", " ") for i in record["link"].split('\n')]
-		record['link'] = []
-		for link in links:
-			parts = link.split(" ")
-			linkobj = {"url": parts[0]}
-			if len(parts) > 1:
-				linkobj["anchor"] = parts[1]
-			if len(parts) > 2:
-				linkobj["format"] = parts[2]
-			if len(linkobj["url"]) > 0:
-				record["link"].append(linkobj)
-
-	return record
-
-
-def doi(record):
-	"""
-
-	:param record: the record.
-	:type record: dict
-	:returns: dict -- the modified record.
-
-	"""
-	if 'doi' in record:
-		if 'link' not in record:
-			record['link'] = []
-		nodoi = True
-		for item in record['link']:
-			if 'doi' in item:
-				nodoi = False
-		if nodoi:
-			link = record['doi']
-			if link.startswith('10'):
-				link = 'http://dx.doi.org/' + link
-			record['link'].append({"url": link, "anchor": "doi"})
-	return record
-
-
 def convert_to_unicode(record):
     """
     Convert accent from latex to unicode style.
