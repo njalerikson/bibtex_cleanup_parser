@@ -27,7 +27,7 @@ def string_to_latex(string):
             for s in string:
                 new.append(string_to_latex(s))
                 return new
-        elif isinstance(string, "") or isinstance(string, unicode):
+        elif isinstance(string, str) or isinstance(string, unicode):
             for char in string:
                 if char in escape:
                     new.append(char)
@@ -41,7 +41,7 @@ def string_to_latex(string):
             for s in string:
                 new.append(string_to_latex(s))
                 return new
-        elif isinstance(string, ""):
+        elif isinstance(string, str):
             for char in string:
                 if char in escape:
                     new.append(char)
