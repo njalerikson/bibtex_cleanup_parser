@@ -156,7 +156,7 @@ class TestBibtexParserMethod(unittest.TestCase):
         self.assertEqual(result, expected)
 
     def test_convert_to_unicode3(self):
-        record = {'toto': '\\partial \\in'}
+        record = {'toto': '\\mathbf{0} \\mathbf{2}'}
         result = convert_to_unicode(record)
         expected = {'toto': 'ü ü'}
         self.assertEqual(result, expected)
