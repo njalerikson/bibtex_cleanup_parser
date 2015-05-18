@@ -234,53 +234,50 @@ def doi(record):
 
 
 def convert_to_unicode(record):
-	"""
-	Convert accent from latex to unicode style.
+    """
+    Convert accent from latex to unicode style.
+    :param record: the record.
+    :type record: dict
+    :returns: dict -- the modified record.
+    """
+    for val in record:
+        if '\\' in record[val] or '{' in record[val]:
+            for k, v in itertools.chain(unicode_to_crappy_latex1, unicode_to_latex):
+                if v in record[val]:
+                    record[val] = record[val].replace(v, k)
 
-	:param record: the record.
-	:type record: dict
-	:returns: dict -- the modified record.
-	"""
-	for val in record:
-		if '\\' in record[val] or '{' in record[val]:
-			for k, v in itertools.chain(unicode_to_crappy_latex1, unicode_to_latex):
-				if v in record[val]:
-					record[val] = record[val].replace(v, k)
-
-		# If there is still very crappy items
-		if '\\' in record[val]:
-			for k, v in unicode_to_crappy_latex2:
-				if v in record[val]:
-					parts = record[val].split(str(v))
-					for key, record[val] in enumerate(parts):
-						if key+1 < len(parts) and len(parts[key+1]) > 0:
-							# Change order to display accents
-							parts[key] = parts[key] + parts[key+1][0]
-							parts[key+1] = parts[key+1][1:]
-					record[val] = k.join(parts)
-	return record
+        # If there is still very crappy items
+        if '\\' in record[val]:
+            for k, v in unicode_to_crappy_latex2:
+                if v in record[val]:
+                    parts = record[val].split(str(v))
+                    for key, record[val] in enumerate(parts):
+                        if key+1 < len(parts) and len(parts[key+1]) > 0:
+                            # Change order to display accents
+                            parts[key] = parts[key] + parts[key+1][0]
+                            parts[key+1] = parts[key+1][1:]
+                    record[val] = k.join(parts)
+    return record
 
 
 def homogeneize_latex_encoding(record):
-	"""
-	Homogeneize the latex enconding style for bibtex
-
-	This function is experimental.
-
-	:param record: the record.
-	:type record: dict
-	:returns: dict -- the modified record.
-	"""
-	# First, we convert everything to unicode
-	record = convert_to_unicode(record)
-	# And then, we fall back
-	for val in record:
-		if val not in ('ID',):
-			logger.debug('Apply string_to_latex to: %s', val)
-			record[val] = string_to_latex(record[val])
-			if val == 'title':
-				logger.debug('Protect uppercase in title')
-				logger.debug('Before: %s', record[val])
-				record[val] = protect_uppercase(record[val])
-				logger.debug('After: %s', record[val])
-	return record
+    """
+    Homogeneize the latex enconding style for bibtex
+    This function is experimental.
+    :param record: the record.
+    :type record: dict
+    :returns: dict -- the modified record.
+    """
+    # First, we convert everything to unicode
+    record = convert_to_unicode(record)
+    # And then, we fall back
+    for val in record:
+        if val not in ('ID',):
+            logger.debug('Apply string_to_latex to: %s', val)
+            record[val] = string_to_latex(record[val])
+            if val == 'title':
+                logger.debug('Protect uppercase in title')
+                logger.debug('Before: %s', record[val])
+                record[val] = protect_uppercase(record[val])
+                logger.debug('After: %s', record[val])
+    return record
