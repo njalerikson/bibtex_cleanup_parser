@@ -159,7 +159,7 @@ class TestBibtexParserMethod(unittest.TestCase):
     def test_convert_to_unicode3(self):
         record = {'toto': '\\mathbf{0} \\mathbf{2}'}
         result = convert_to_unicode(record)
-        if sys.version_info < (3, 0, 0):
+        if sys.version_info < (3, 2, 0):
             expected = {'toto': u'\ud7ce \ud7d0'}
         else:
             expected = {'toto': '\ud7ce \ud7d0'}
