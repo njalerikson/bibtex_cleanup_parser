@@ -4,7 +4,7 @@
 from __future__ import unicode_literals
 import unittest
 
-from bibtexparser.customization import getnames, convert_to_unicode, homogenize_latex_encoding, page_double_hyphen, keyword
+from bibtexparser.customization import getnames, author, editor, convert_to_unicode, homogenize_latex_encoding, page_double_hyphen, keyword
 
 
 class TestBibtexParserMethod(unittest.TestCase):
@@ -45,6 +45,39 @@ class TestBibtexParserMethod(unittest.TestCase):
         names = ['A. {Delgado de Molina}', 'M. Vign{\\\'e}']
         result = getnames(names)
         expected = ['Delgado de Molina, A.', 'Vigné, M.']
+        self.assertEqual(result, expected)
+
+    ###########
+    # author
+    ###########
+    def test_author_basic(self):
+        record = {'author': 'Foo G. Bar and Lee B. Smith'}
+        result = author(record)
+        expected = {'author': [['Foo G.', 'Bar'],['Lee B.', 'Smith']]}
+        self.assertEqual(result, expected)
+
+    def test_author_others(self):
+        record = {'author': 'Foo G. Bar and Lee B. Smith and others'}
+        result = author(record)
+        expected = {'author': [['Foo G.', 'Bar'],['Lee B.', 'Smith'],['', 'others']]}
+        self.assertEqual(result, expected)
+
+    ###########
+    # editor
+    ###########
+    def test_editor_basic(self):
+        record = {'editor': 'Foo G. Bar and Lee B. Smith'}
+        result = editor(record)
+        expected = {'editor': [ {'ID': 'FooGBar', 'name': ['Foo G.', 'Bar']},
+                                {'ID': 'LeeBSmith', 'name': ['Lee B.', 'Smith']}]}
+        self.assertEqual(result, expected)
+
+    def test_editor_others(self):
+        record = {'editor': 'Foo G. Bar and Lee B. Smith and others'}
+        result = editor(record)
+        expected = {'editor': [ {'ID': 'FooGBar', 'name': ['Foo G.', 'Bar']},
+                                {'ID': 'LeeBSmith', 'name': ['Lee B.', 'Smith']},
+                                {'ID': 'others', 'name': ['', 'others']}]}
         self.assertEqual(result, expected)
 
     ###########

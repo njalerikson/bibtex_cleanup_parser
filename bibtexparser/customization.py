@@ -116,7 +116,7 @@ def editor(record):
 
 			editor = getnames(editor)
 			# convert editor to object
-			record["editor"] = [	{	"ID": re.sub(r",| |\.", "", editor, flags=re.IGNORECASE), "name": e} for e in editor]
+			record["editor"] = [	{	"ID": re.sub(r",| |\.", "", "".join(e), flags=re.IGNORECASE), "name": e} for e in editor]
 		else:
 			del record["editor"]
 	return record
