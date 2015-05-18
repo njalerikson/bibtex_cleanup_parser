@@ -143,12 +143,20 @@ class TestBibtexParserMethod(unittest.TestCase):
     ###########
     # convert to unicode
     ###########
-    def test_convert_to_unicode(self):
+    def test_convert_to_unicode1(self):
         record = {'toto': '{\`a} \`{a}'}
         result = convert_to_unicode(record)
         expected = {'toto': 'à à'}
         self.assertEqual(result, expected)
+
+    def test_convert_to_unicode2(self):
         record = {'toto': '{\\"u} \\"{u}'}
+        result = convert_to_unicode(record)
+        expected = {'toto': 'ü ü'}
+        self.assertEqual(result, expected)
+
+    def test_convert_to_unicode3(self):
+        record = {'toto': '{\\mathtt{0}} \\"{mathtt{1}}'}
         result = convert_to_unicode(record)
         expected = {'toto': 'ü ü'}
         self.assertEqual(result, expected)
