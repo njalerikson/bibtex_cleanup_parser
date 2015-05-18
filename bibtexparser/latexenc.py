@@ -23,11 +23,11 @@ def string_to_latex(string):
     new = []
 
     if sys.version_info < (3, 0, 0):
-        if type(string) is type([]):
+        if isinstance(string, list):
             for s in string:
                 new.append(string_to_latex(s))
                 return new
-        elif type(string) is type("") or type(string) is type(u""):
+        elif isinstance(string, "") or isinstance(string, unicode):
             for char in string:
                 if char in escape:
                     new.append(char)
@@ -37,11 +37,11 @@ def string_to_latex(string):
         else:
             raise ValueError("string_to_latex only accepts lists (and nested lists) of strings/unicode or just strings/unicode (not ({}) '{}')".format(type(string), string))
     else:
-        if type(string) is type([]):
+        if isinstance(string, list):
             for s in string:
                 new.append(string_to_latex(s))
                 return new
-        elif type(string) is type("") or type(string) is type("\u"):
+        elif isinstance(string, ""):
             for char in string:
                 if char in escape:
                     new.append(char)
