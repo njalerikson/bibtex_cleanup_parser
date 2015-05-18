@@ -318,7 +318,7 @@ class TestBibtexParserList(unittest.TestCase):
                          'pages': '12-23',
                          'title': '{An} amazing {title}',
                          'comments': 'A comment',
-                         'author': [['Ben Loaeb', 'Jean Laid{\\\'e}']],
+                         'author': 'Jean Laid{\\\'e}, Ben Loaeb',
                          'volume': '12',
                          'month': 'jan'
                          }]
@@ -334,7 +334,7 @@ class TestBibtexParserList(unittest.TestCase):
             expected = [{'ENTRYTYPE': 'inproceedings',
                          'year': '2014',
                          'title': 'Cool Stuff',
-                         'author': [['John', '']],
+                         'author': 'John',
                          'ID': 'mykey',
                          'booktitle': 'My International Conference',
                          }]
@@ -347,7 +347,7 @@ class TestBibtexParserList(unittest.TestCase):
             expected = [{'ENTRYTYPE': 'inproceedings',
                          'year': '2014',
                          'title': 'Cool Stuff',
-                         'author': [['John', 'Doe']],
+                         'author': 'John Doe',
                          'ID': 'mykey',
                          'booktitle': 'My International Conference',
                          'note': 'Email: John.Doe@example.com',
@@ -383,7 +383,7 @@ class TestBibtexParserList(unittest.TestCase):
                               'pages': '12-23',
                               'title': 'An amazing title: à',
                               'comments': 'A comment',
-                              'author': ['Jean', 'César'],
+                              'author': 'Jean César',
                               'volume': '12',
                               'month': 'jan'
                          }]
@@ -402,7 +402,7 @@ class TestBibtexParserList(unittest.TestCase):
                               'pages': '12-23',
                               'title': '{A}n amazing title: {\\`a}',
                               'comments': 'A comment',
-                              'author': [['Jean', 'C{\\\'e}sar']],
+                              'author': 'Jean C{\\\'e}sar',
                               'volume': '12',
                               'month': 'jan'
                          }]
