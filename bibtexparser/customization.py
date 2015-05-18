@@ -10,6 +10,12 @@ Each of them takes a record and return the modified record.
 import itertools
 import re
 import logging
+import sys
+
+if sys.version_info < (3, 0, 0):
+	range = xrange
+else:
+	range = range
 
 from .latexenc import unicode_to_latex, unicode_to_crappy_latex1, unicode_to_crappy_latex2, string_to_latex, protect_uppercase
 
@@ -46,7 +52,7 @@ def getnames(names):
 			last = [namesplit.pop()]
 			firsts = namesplit
 
-		for i in xrange(0, len(firsts)):
+		for i in range(0, len(firsts)):
 			firsts[i] = re.sub(r'\.', '. ', firsts[i])
 
 			# error check for initials without the .
@@ -57,7 +63,7 @@ def getnames(names):
 
 			firsts[i] = firsts[i].strip()
 
-		for i in xrange(len(firsts) - 1, 0, -1):
+		for i in range(len(firsts) - 1, 0, -1):
 			item = firsts[i]
 			if re.match(r"ben|van|der|de|la|le", item, flags=re.IGNORECASE):
 				last = [firsts.pop(i)] + last
