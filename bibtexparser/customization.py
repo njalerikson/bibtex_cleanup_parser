@@ -52,7 +52,7 @@ def getnames(names):
 			# error check for initials without the .
 			if len(firsts[i]) == 1:
 				firsts[i] += '. '
-			elif len(firsts[i]) == 2 and not (firsts[i][1] is '.'):
+			elif len(firsts[i]) == 2 and not in ["ben", "van", "der", "de", "la", "le"] and not (firsts[i][1] is '.'):
 				firsts[i] = firsts[i][0] + '. ' + firsts[i][1] + '. '
 
 			firsts[i] = firsts[i].strip()
