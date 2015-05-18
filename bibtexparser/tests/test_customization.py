@@ -5,6 +5,10 @@ from __future__ import unicode_literals
 import sys
 import unittest
 
+import logging
+
+logger = logging.getLogger(__name__)
+
 from bibtexparser.customization import getnames, author, editor, type, convert_to_unicode, homogenize_latex_encoding, page_double_hyphen, keyword
 
 
@@ -159,6 +163,7 @@ class TestBibtexParserMethod(unittest.TestCase):
     def test_convert_to_unicode3(self):
         record = {'toto': '\\mathbf{0} \\mathbf{2}'}
         result = convert_to_unicode(record)
+        logger.debug("sys.version_info: {}".format(sys.version_info))
         if sys.version_info < (3, 0, 0):
             expected = {'toto': u'\ud7ce \ud7d0'}
         else:
