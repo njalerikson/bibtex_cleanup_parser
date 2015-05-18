@@ -25,7 +25,7 @@ def string_to_latex(string):
         for s in string:
             new.append(string_to_latex(s))
             return new
-    elif type(string) is type(""):
+    elif type(string) is type("") or type(string) is type(u""):
         for char in string:
             if char in escape:
                 new.append(char)
@@ -33,7 +33,7 @@ def string_to_latex(string):
                 new.append(unicode_to_latex_map.get(char, char))
         return ''.join(new)
     else:
-        raise ValueError("string_to_latex only accepts lists (and nested lists) of strings or just strings (not ({}) '{}')".format(type(string), string))
+        raise ValueError("string_to_latex only accepts lists (and nested lists) of strings/unicode or just strings/unicode (not ({}) '{}')".format(type(string), string))
 
 
 def protect_uppercase(string):
