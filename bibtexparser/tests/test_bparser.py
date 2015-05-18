@@ -23,9 +23,7 @@ def customizations_unicode(record):
     record = editor(record)
     record = journal(record)
     record = keyword(record)
-    record = link(record)
     record = page_double_hyphen(record)
-    record = doi(record)
     record = convert_to_unicode(record)
     return record
 
@@ -44,9 +42,7 @@ def customizations_latex(record):
     record = editor(record)
     record = journal(record)
     record = keyword(record)
-    record = link(record)
     record = page_double_hyphen(record)
-    record = doi(record)
     return record
 
 
