@@ -39,11 +39,11 @@ def getnames(names):
 
 		if ',' in namestring:
 			namesplit = namestring.split(',', 1)
-			last = namesplit[0].strip()
+			last = [namesplit[0].strip()]
 			firsts = namesplit[1].split()
 		else:
 			namesplit = namestring.split()
-			last = namesplit.pop()
+			last = [namesplit.pop()]
 			firsts = namesplit
 
 		for i in xrange(0, len(firsts)):
@@ -57,11 +57,12 @@ def getnames(names):
 
 			firsts[i] = firsts[i].strip()
 
-		for item in firsts:
+		for i in xrange(len(firsts) - 1, 0, -1):
+			item = firsts[i]
 			if re.match(r"ben|van|der|de|la|le", item, flags=re.IGNORECASE):
-				last = firsts.pop() + ' ' + last
+				last = [firsts.pop(i)] + last
 
-		tidynames.append([' '.join(firsts), last])
+		tidynames.append([' '.join(firsts), ' '.join(last)])
 	return tidynames
 
 
