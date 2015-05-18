@@ -19,8 +19,8 @@ from .latexenc import unicode_to_latex, unicode_to_crappy_latex1, unicode_to_cra
 
 logger = logging.getLogger(__name__)
 
-__all__ = [	'getnames', 'author', 'editor', 'journal', 'keyword', 'link',
-			'page_double_hyphen', 'doi', 'type', 'convert_to_unicode',
+__all__ = [	'getnames', 'author', 'editor', 'journal', 'keyword',
+			'page_double_hyphen', 'type', 'convert_to_unicode',
 			'homogenize_latex_encoding']
 
 
