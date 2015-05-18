@@ -33,7 +33,7 @@ def string_to_latex(string):
                 new.append(unicode_to_latex_map.get(char, char))
         return ''.join(new)
     else:
-        raise ValueError("string_to_latex only accepts lists (and nested lists) of strings or just strings")
+        raise ValueError("string_to_latex only accepts lists (and nested lists) of strings or just strings (not this '{}')".format(string))
 
 
 def protect_uppercase(string):
