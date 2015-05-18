@@ -2652,7 +2652,7 @@ def prepare_unicode_to_latex():
         ("\uD7FF", "\\mathtt{9}"),
     )
 
-    if sys.version_info >= (3, 0):
+    if sys.version_info >= (3, 0, 0):
         unicode_to_latex = to_latex
         unicode_to_crappy_latex1 = to_crappy1
         unicode_to_crappy_latex2 = to_crappy2

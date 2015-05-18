@@ -14,8 +14,6 @@ import sys
 
 if sys.version_info < (3, 0, 0):
 	range = xrange
-else:
-	range = range
 
 from .latexenc import unicode_to_latex, unicode_to_crappy_latex1, unicode_to_crappy_latex2, string_to_latex, protect_uppercase
 
