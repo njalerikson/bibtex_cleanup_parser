@@ -40,6 +40,18 @@ class TestBibtexParserMethod(unittest.TestCase):
                     ]
         self.assertEqual(result, expected)
 
+    def test_getnames_add_single_dot(self):
+        names = ['F Bar', 'C Lux']
+        result = getnames(names)
+        expected = [['F.', 'Bar'], ['C.', 'Lux']]
+        self.assertEqual(result, expected)
+
+    def test_getnames_add_double_dot(self):
+        names = ['FG Bar', 'CQ Lux']
+        result = getnames(names)
+        expected = [['F. G.', 'Bar'], ['C. Q.', 'Lux']]
+        self.assertEqual(result, expected)
+
     @unittest.skip('Bug #9')
     def test_getnames_braces(self):
         names = ['A. {Delgado de Molina}', 'M. Vign{\\\'e}']
