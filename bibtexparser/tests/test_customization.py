@@ -2,7 +2,6 @@
 # -*- coding: utf-8 -*-
 
 from __future__ import unicode_literals
-
 import unittest
 
 from bibtexparser.customization import getnames, author, editor, type, convert_to_unicode, homogenize_latex_encoding, page_double_hyphen, keyword
