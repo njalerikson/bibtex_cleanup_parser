@@ -34,6 +34,46 @@ class TestLatexConverter(unittest.TestCase):
         expected = '{\c c}'
         self.assertEqual(result, expected)
 
+    def test_string(self):
+        string = 'hello'
+        result = string_to_latex(string)
+        expected = 'hello'
+        self.assertEqual(result, expected)
+
+    def test_list_of_string(self):
+        string = ['h', 'e', 'l', 'l', 'o']
+        result = string_to_latex(string)
+        expected = ['h', 'e', 'l', 'l', 'o']
+        self.assertEqual(result, expected)
+
+    def test_list_of_list_of_string(self):
+        string = [['h', 'e', 'l', 'l', 'o'], ['f', 'o', 'o', 'b', 'a', 'r']]
+        result = string_to_latex(string)
+        expected = [['h', 'e', 'l', 'l', 'o'], ['f', 'o', 'o', 'b', 'a', 'r']]
+        self.assertEqual(result, expected)
+
+    def test_nonlist_nonstring(self):
+        with self.assertRaises(ValueError) as e:
+            string = 12345
+            result = string_to_latex(string)
+
+        self.assertEqual(type(e.exception), ValueError)
+
+    def test_list_of_nonlist_nonstring(self):
+        with self.assertRaises(ValueError) as e:
+            string = [12345]
+            result = string_to_latex(string)
+
+        self.assertEqual(type(e.exception), ValueError)
+
+    def test_list_of_list_of_nonlist_nonstring(self):
+        with self.assertRaises(ValueError) as e:
+            string = [[12345], [67890]]
+            result = string_to_latex(string)
+
+        self.assertEqual(type(e.exception), ValueError)
+
+
 class TestUppercaseProtection(unittest.TestCase):
 
     def test_uppercase(self):
