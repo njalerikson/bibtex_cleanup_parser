@@ -155,13 +155,11 @@ class TestBibtexParserMethod(unittest.TestCase):
         expected = {'toto': 'ü ü'}
         self.assertEqual(result, expected)
 
-    # def test_convert_to_unicode3(self):
-    #     record = {'toto': '\\mathbf{0} \\mathbf{2}'}
-    #     result = convert_to_unicode(record)
-
-    #     expected = {'toto': u("\ud7ce \ud7d0")}
-
-    #     self.assertEqual(result, expected)
+    def test_convert_to_unicode3(self):
+        record = {'toto': "\\c \\'"}
+        result = convert_to_unicode(record)
+        expected = {'toto': " \u0327\u0301"}
+        self.assertEqual(result, expected)
 
     ###########
     # homogeneize
