@@ -17,14 +17,13 @@ logger = logging.getLogger(__name__)
 
 __all__ = ['BibTexParser']
 
+python2 = sys.version_info < (3, 0, 0)
 
-if sys.version_info >= (3, 0):
-    from io import StringIO
-    ustr = str
-else:
+if python2:
     from StringIO import StringIO
-    ustr = unicode
-
+else:
+    from io import StringIO
+ustr = unicode if python2 else str
 
 class BibTexParser(object):
     """

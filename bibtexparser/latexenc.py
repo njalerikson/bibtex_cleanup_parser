@@ -9,10 +9,10 @@
 
 import re
 import sys
+python2 = sys.version_info < (3, 0, 0)
 
 __all__ = ['string_to_latex', 'protect_uppercase', 'unicode_to_latex',
            'unicode_to_crappy_latex1', 'unicode_to_crappy_latex2']
-
 
 def string_to_latex(string):
     """
@@ -26,7 +26,7 @@ def string_to_latex(string):
         for el in string:
             new.append(string_to_latex(el))
         return new
-    elif isinstance(string, str) or (sys.version_info < (3, 0, 0) and isinstance(string, unicode)):
+    elif isinstance(string, str) or (python2 and isinstance(string, unicode)):
         for char in string:
             if char in escape:
                 new.append(char)

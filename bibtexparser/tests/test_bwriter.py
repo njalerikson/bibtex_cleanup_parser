@@ -8,6 +8,8 @@ from __future__ import unicode_literals
 import unittest
 import sys
 
+python2 = sys.version_info < (3, 0, 0)
+
 from bibtexparser.bparser import BibTexParser
 from bibtexparser.bwriter import BibTexWriter, to_bibtex
 from bibtexparser.customization import author
@@ -25,9 +27,8 @@ class TestBibtexWriterList(unittest.TestCase):
         with open('bibtexparser/tests/data/article_output.bib', 'r') as bibfile:
             expected = bibfile.read()
         result = to_bibtex(bib)
-        if not sys.version_info >= (3, 0):
-            if isinstance(result, unicode):
-                result = result.encode('utf-8')
+        if python2 and isinstance(result, unicode):
+            result = result.encode('utf-8')
         self.maxDiff = None
         self.assertEqual(expected, result)
 
