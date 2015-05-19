@@ -35,38 +35,36 @@ def getnames(names):
 	tidynames = []
 	for namestring in names:
 		namestring = namestring.strip()
-		if len(namestring) < 1:
-			continue
+		if len(namestring) > 0:
+			# simply just remove jnr., jr., and junior
+			namestring = re.sub(r"jnr\.*|jr\.*|junior", "", namestring, flags=re.IGNORECASE)
 
-		# simply just remove jnr., jr., and junior
-		namestring = re.sub(r"jnr\.*|jr\.*|junior", "", namestring, flags=re.IGNORECASE)
+			if ',' in namestring:
+				namesplit = namestring.split(',', 1)
+				last = [namesplit[0].strip()]
+				firsts = namesplit[1].split()
+			else:
+				namesplit = namestring.split()
+				last = [namesplit.pop()]
+				firsts = namesplit
 
-		if ',' in namestring:
-			namesplit = namestring.split(',', 1)
-			last = [namesplit[0].strip()]
-			firsts = namesplit[1].split()
-		else:
-			namesplit = namestring.split()
-			last = [namesplit.pop()]
-			firsts = namesplit
+			for i in range(0, len(firsts)):
+				firsts[i] = re.sub(r'\.', '. ', firsts[i])
 
-		for i in range(0, len(firsts)):
-			firsts[i] = re.sub(r'\.', '. ', firsts[i])
+				# error check for initials without the .
+				if len(firsts[i]) == 1:
+					firsts[i] += '. '
+				elif len(firsts[i]) == 2 and firsts[i] not in ["ben", "van", "der", "de", "la", "le"] and not (firsts[i][1] is '.'):
+					firsts[i] = firsts[i][0].upper() + '. ' + firsts[i][1].upper() + '. '
 
-			# error check for initials without the .
-			if len(firsts[i]) == 1:
-				firsts[i] += '. '
-			elif len(firsts[i]) == 2 and firsts[i] not in ["ben", "van", "der", "de", "la", "le"] and not (firsts[i][1] is '.'):
-				firsts[i] = firsts[i][0].upper() + '. ' + firsts[i][1].upper() + '. '
+				firsts[i] = firsts[i].strip()
 
-			firsts[i] = firsts[i].strip()
+			for i in range(len(firsts) - 1, 0, -1):
+				item = firsts[i]
+				if re.match(r"ben|van|der|de|la|le", item, flags=re.IGNORECASE):
+					last = [firsts.pop(i)] + last
 
-		for i in range(len(firsts) - 1, 0, -1):
-			item = firsts[i]
-			if re.match(r"ben|van|der|de|la|le", item, flags=re.IGNORECASE):
-				last = [firsts.pop(i)] + last
-
-		tidynames.append([' '.join(firsts), ' '.join(last)])
+			tidynames.append([' '.join(firsts), ' '.join(last)])
 	return tidynames
 
 

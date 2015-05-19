@@ -22,34 +22,33 @@ def string_to_latex(string):
 
     new = []
 
-    if sys.version_info < (3, 0, 0):
-        if isinstance(string, list):
-            for s in string:
-                new.append(string_to_latex(s))
-                return new
-        elif isinstance(string, str) or isinstance(string, unicode):
-            for char in string:
-                if char in escape:
-                    new.append(char)
-                else:
-                    new.append(unicode_to_latex_map.get(char, char))
-            return ''.join(new)
-        else:
-            raise ValueError("string_to_latex only accepts lists (and nested lists) of strings/unicode or just strings/unicode (not ({}) '{}')".format(type(string), string))
+    if isinstance(string, list):
+        for s in string:
+            new.append(string_to_latex(s))
+            return new
+    elif isinstance(string, str) or isinstance(string, unicode):
+        for char in string:
+            if char in escape:
+                new.append(char)
+            else:
+                new.append(unicode_to_latex_map.get(char, char))
+        return ''.join(new)
     else:
-        if isinstance(string, list):
-            for s in string:
-                new.append(string_to_latex(s))
-                return new
-        elif isinstance(string, str):
-            for char in string:
-                if char in escape:
-                    new.append(char)
-                else:
-                    new.append(unicode_to_latex_map.get(char, char))
-            return ''.join(new)
-        else:
-            raise ValueError("string_to_latex only accepts lists (and nested lists) of strings/unicode or just strings/unicode (not ({}) '{}')".format(type(string), string))
+        raise ValueError("string_to_latex only accepts lists (and nested lists) of strings/unicode or just strings/unicode (not ({}) '{}')".format(type(string), string))
+    # else:
+    #     if isinstance(string, list):
+    #         for s in string:
+    #             new.append(string_to_latex(s))
+    #             return new
+    #     elif isinstance(string, str):
+    #         for char in string:
+    #             if char in escape:
+    #                 new.append(char)
+    #             else:
+    #                 new.append(unicode_to_latex_map.get(char, char))
+    #         return ''.join(new)
+    #     else:
+    #         raise ValueError("string_to_latex only accepts lists (and nested lists) of strings/unicode or just strings/unicode (not ({}) '{}')".format(type(string), string))
 
 
 def protect_uppercase(string):
