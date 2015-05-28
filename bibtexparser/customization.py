@@ -86,7 +86,7 @@ def author(record):
 			# error check for incorrect et al.
 			author = re.sub(re.compile(r"et al\.*", flags=re.IGNORECASE), "and others", author)
 
-			author = re.split(r"\s+and\s+", author, flags=re.IGNORECASE)
+			author = re.split(re.compile(r"\s+and\s+", flags=re.IGNORECASE), author)
 
 			record["author"] = getnames(author)
 		else:
@@ -111,7 +111,7 @@ def editor(record):
 			# error check for incorrect et al.
 			editor = re.sub(re.compile(r"et al\.*", flags=re.IGNORECASE), "and others", editor)
 
-			editor = re.split(r"\s+and\s+", editor, flags=re.IGNORECASE)
+			editor = re.split(re.compile(r"\s+and\s+", flags=re.IGNORECASE), editor)
 
 			editor = getnames(editor)
 			# convert editor to object
