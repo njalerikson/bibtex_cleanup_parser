@@ -7,16 +7,16 @@ class TestHomogeniseFields(unittest.TestCase):
         with open('bibtexparser/tests/data/website.bib', 'r') as bibfile:
             bib = BibTexParser(bibfile.read())
             entries = bib.get_entry_list()
-            self.assertIn('url', entries[0])
+            self.assertTrue('url' in entries[0])
 
     def test_homogenise_on(self):
         with open('bibtexparser/tests/data/website.bib', 'r') as bibfile:
             bib = BibTexParser(bibfile.read(), homogenise_fields=True)
             entries = bib.get_entry_list()
-            self.assertIn('url', entries[0])
+            self.assertTrue('url' in entries[0])
 
     def test_homogenise_off(self):
         with open('bibtexparser/tests/data/website.bib', 'r') as bibfile:
             bib = BibTexParser(bibfile.read(), homogenise_fields=False)
             entries = bib.get_entry_list()
-            self.assertIn('url', entries[0])
+            self.assertTrue('url' in entries[0])
