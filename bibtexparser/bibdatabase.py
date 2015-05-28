@@ -1,8 +1,6 @@
 import sys
-
-python2 = sys.version_info < (2, 7, 0)
-
-if python2:
+python2_6 = sys.version_info < (2, 7, 0)
+if python2_6:
     from ordereddict import OrderedDict
 else:
     from collections import OrderedDict

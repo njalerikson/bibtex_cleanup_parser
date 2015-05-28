@@ -1,7 +1,12 @@
-import unittest
+import unittest, sys
+python2_6 = sys.version_info < (2, 7, 0)
+if python2_6:
+    from ordereddict import OrderedDict
+else:
+    from collections import OrderedDict
+
 import bibtexparser
 from bibtexparser.bibdatabase import BibDatabase
-from collections import OrderedDict
 
 
 class TestStringParse(unittest.TestCase):
