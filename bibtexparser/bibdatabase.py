@@ -1,4 +1,11 @@
-from collections import OrderedDict
+import sys
+
+python2 = sys.version_info < (2, 7, 0)
+
+if python2:
+    from ordereddict import OrderedDict
+else:
+    from collections import OrderedDict
 
 
 class BibDatabase(object):

@@ -1,6 +1,8 @@
 language: python
 matrix:
   include:
+    - python: "2.6"
+      env: TEST_SUITE=suite_2_6
     - python: "2.7"
       env: TEST_SUITE=suite_2_7
     - python: "3.2"
@@ -12,6 +14,9 @@ matrix:
     - python: "pypy"
       env: TEST_SUITE=suite_pypy
 install:
+  - if [[ $TEST_SUITE == suite_2_6 ]]; then
+        pip install ordereddict;
+    fi;
   - if [[ $TEST_SUITE == suite_3_4 ]]; then
         pip install sphinx;
     fi;
