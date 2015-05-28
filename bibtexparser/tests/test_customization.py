@@ -52,12 +52,12 @@ class TestBibtexParserMethod(unittest.TestCase):
         expected = [['F. G.', 'Bar'], ['C. Q.', 'Lux']]
         self.assertEqual(result, expected)
 
-    @unittest.skip('Bug #9')
-    def test_getnames_braces(self):
-        names = ['A. {Delgado de Molina}', 'M. Vign{\\\'e}']
-        result = getnames(names)
-        expected = ['Delgado de Molina, A.', 'Vigné, M.']
-        self.assertEqual(result, expected)
+    # @unittest.skip('Bug #9')
+    # def test_getnames_braces(self):
+    #     names = ['A. {Delgado de Molina}', 'M. Vign{\\\'e}']
+    #     result = getnames(names)
+    #     expected = ['Delgado de Molina, A.', 'Vigné, M.']
+    #     self.assertEqual(result, expected)
 
     ###########
     # author
