@@ -53,25 +53,31 @@ class TestLatexConverter(unittest.TestCase):
         self.assertEqual(result, expected)
 
     def test_nonlist_nonstring(self):
-        with self.assertRaises(ValueError) as e:
-            string = 12345
-            result = string_to_latex(string)
+        # with self.assertRaises(ValueError) as e:
+        #     string = 12345
+        #     result = string_to_latex(string)
 
-        self.assertEqual(type(e.exception), ValueError)
+        # self.assertEqual(type(e.exception), ValueError)
+
+        self.assertRaises(ValueError, string_to_latex, 12345)
 
     def test_list_of_nonlist_nonstring(self):
-        with self.assertRaises(ValueError) as e:
-            string = [12345]
-            result = string_to_latex(string)
+        # with self.assertRaises(ValueError) as e:
+        #     string = [12345]
+        #     result = string_to_latex(string)
 
-        self.assertEqual(type(e.exception), ValueError)
+        # self.assertEqual(type(e.exception), ValueError)
+
+        self.assertRaises(ValueError, string_to_latex, [12345])
 
     def test_list_of_list_of_nonlist_nonstring(self):
-        with self.assertRaises(ValueError) as e:
-            string = [[12345], [67890]]
-            result = string_to_latex(string)
+        # with self.assertRaises(ValueError) as e:
+        #     string = [[12345], [67890]]
+        #     result = string_to_latex(string)
 
-        self.assertEqual(type(e.exception), ValueError)
+        # self.assertEqual(type(e.exception), ValueError)
+
+        self.assertRaises(ValueError, string_to_latex, [[12345], [67890]])
 
 
 class TestUppercaseProtection(unittest.TestCase):
