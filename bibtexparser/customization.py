@@ -37,7 +37,8 @@ def getnames(names):
 		namestring = namestring.strip()
 		if len(namestring) > 0:
 			# simply just remove jnr., jr., and junior
-			namestring = re.sub(r"jnr\.*|jr\.*|junior", "", namestring, flags=re.IGNORECASE)
+
+			namestring = re.sub(re.compile(r"jnr\.*|jr\.*|junior", flags=re.IGNORECASE), "", namestring)
 
 			if ',' in namestring:
 				namesplit = namestring.split(',', 1)
@@ -83,7 +84,7 @@ def author(record):
 			author = record["author"]
 			author = re.sub(r"\n", " ", author)
 			# error check for incorrect et al.
-			author = re.sub(r"et al\.*", "and others", author, flags=re.IGNORECASE)
+			author = re.sub(re.compile(r"et al\.*", flags=re.IGNORECASE), "and others", author)
 
 			author = re.split(r"\s+and\s+", author, flags=re.IGNORECASE)
 
@@ -108,13 +109,13 @@ def editor(record):
 			editor = record["editor"]
 			editor = re.sub(r"\n", " ", editor)
 			# error check for incorrect et al.
-			editor = re.sub(r"et al\.*", "and others", editor, flags=re.IGNORECASE)
+			editor = re.sub(re.compile(r"et al\.*", flags=re.IGNORECASE), "and others", editor)
 
 			editor = re.split(r"\s+and\s+", editor, flags=re.IGNORECASE)
 
 			editor = getnames(editor)
 			# convert editor to object
-			record["editor"] = [	{	"ID": re.sub(r",| |\.", "", "".join(e), flags=re.IGNORECASE), "name": e} for e in editor]
+			record["editor"] = [	{	"ID": re.sub(re.compile(r",| |\.", flags=re.IGNORECASE), "", "".join(e)), "name": e} for e in editor]
 		else:
 			del record["editor"]
 	return record
@@ -130,7 +131,7 @@ def page_double_hyphen(record):
 
 	"""
 	if "pages" in record:
-		record["pages"] = re.sub(r"\s*-+\s*", "--", record["pages"], flags=re.IGNORECASE)
+		record["pages"] = re.sub(re.compile(r"\s*-+\s*", flags=re.IGNORECASE), "--", record["pages"])
 
 		# if "-" in record["pages"]:
 		# 	p = [i.strip().strip('-') for i in record["pages"].split("-")]
@@ -166,7 +167,7 @@ def journal(record):
 		# switch journal to object
 		if record["journal"]:
 			journal = re.sub(r"\n", " ", record["journal"])
-			record["journal"] = {	"ID": re.sub(r",| |\.", "", journal, flags=re.IGNORECASE), "name": journal}
+			record["journal"] = {	"ID": re.sub(re.compile(r",| |\.", flags=re.IGNORECASE), "", journal), "name": journal}
 	return record
 
 
